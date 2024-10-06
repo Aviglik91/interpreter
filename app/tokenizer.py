@@ -1,4 +1,3 @@
-from os import linesep
 from typing import List
 import sys
 
@@ -49,13 +48,13 @@ class Token:
         self, name: str, line: int, literal: str = "", valid: bool = True
     ) -> None:
         self.name = name
-        self.litheral = literal
+        self.literal = literal
         self.disc = "null"
         self.line: int = line
         self.valid: bool = valid
 
     def __repr__(self) -> str:
-        return f"{self.name}  {self.litheral}"
+        return f"{self.name}  {self.literal}"
 
 
 class Scanner:
@@ -70,7 +69,7 @@ class Scanner:
         token: Token
         for token in self.tokens:
             if token.valid:
-                sys.stdout.write(f"{token.litheral} {token.name} {token.disc}\n")
+                sys.stdout.write(f"{token.literal} {token.name} {token.disc}\n")
             else:
                 sys.stderr.write(
                     f"[line {token.line}] Error: Unexpected character: {token.name}\n"

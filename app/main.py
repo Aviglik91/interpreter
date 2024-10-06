@@ -1,9 +1,8 @@
 import sys
-import os
 
 try:
     from app.tokenizer import Scanner
-except Exception:
+except ImportError:
     from tokenizer import Scanner
 
 
@@ -20,9 +19,12 @@ def main():
     if command != "tokenize":
         print(f"Unknown command: {command}", file=sys.stderr)
         exit(1)
-
-    with open(filename) as file:
-        file_contents = file.read()
+    try:
+        with open(filename) as file:
+            file_contents = file.read()
+    except IOError as e:
+        print(f"Error reading file {filename}: {e}", file=sys.stderr)
+        exit(1)
     # Uncomment this block to pass the first stage
     if file_contents:
         scanner = Scanner(file_contents)
