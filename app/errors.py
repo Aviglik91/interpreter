@@ -1,0 +1,2 @@
+class EndOfString(IndexError):
+    pass
